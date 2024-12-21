@@ -1,0 +1,72 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "stakeTokens",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "stakes",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"stake.sol": "TestStake"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"stake.sol": {
+			"keccak256": "0xc0ae965340bd4f757c04fbc831a858280926f70c7359714bd9ce5f1be7bc42a6",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e7f8166f066c05b3c579ca7776adfdb5229a2669422be14e67afc59858afdb64",
+				"dweb:/ipfs/QmYxdxfjteogU95PhX6hPTzd1VHsmMoFXqJQHfSdco9zPr"
+			]
+		}
+	},
+	"version": 1
+}

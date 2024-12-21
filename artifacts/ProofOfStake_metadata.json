@@ -9,6 +9,25 @@
 				"anonymous": false,
 				"inputs": [
 					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "message",
+						"type": "string"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "validator",
+						"type": "address"
+					}
+				],
+				"name": "ValidatorRejected",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
 						"indexed": true,
 						"internalType": "address",
 						"name": "validator",
@@ -57,6 +76,25 @@
 						"internalType": "struct ProofOfStake.Validator[]",
 						"name": "",
 						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "threshold",
+						"type": "uint256"
+					}
+				],
+				"name": "handleLowStakes",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -167,11 +205,11 @@
 	},
 	"sources": {
 		"ProofOfStake.sol": {
-			"keccak256": "0x31233f1d9c92864734626d754224e269d5d934b38dce6852a762edc6c8321114",
+			"keccak256": "0x435523ae32f0e27cdcdf912659b0cc8bbb665b380bb0b07a2ce99ae232a78b75",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3f4494be72c0ed9f7d293c28f32e200c584991331f1e5c4957fa622cf4938fdf",
-				"dweb:/ipfs/QmTXENspZEnMjFvLpZDsHyAVPG7hzjyWqNKvBQVCabpjKn"
+				"bzz-raw://f9ba285cb2b43d6e135e238aadb8aba0389dd4a14f23e24b23b2d936502a74d3",
+				"dweb:/ipfs/QmYDtjF7Lru4KzcA13fvF1kQf5gfg8jWXgt2kZiZ5VQ62z"
 			]
 		}
 	},

@@ -10,56 +10,89 @@ contract ProofOfWork {
     Miner[] public miners;
     bytes32 public targetHash;
     uint public rewardPool;
-    uint public difficulty; // Dynamic difficulty level
+    uint public difficulty; // Difficulty level
     uint public lastSolutionTime; // Timestamp of the last solution
+    uint public solutionCount; // Total solutions submitted
+    uint public trackingStartTime; // Metrics tracking start time
+    uint public solutionRate; // Solutions per minute
+
+    // Event declaration
+    event SolutionSubmitted(address indexed miner, bytes32 solution, uint timestamp);
+    event SolutionReverted(string message, address indexed miner);
 
     constructor() {
-        // Initialize target hash and reward pool
+        // Initialize the target hash and reward pool
         targetHash = keccak256(abi.encodePacked("initial_target"));
-        rewardPool = 100; // Total reward pool
-        difficulty = 2; // Start with difficulty 2 (example)
-        lastSolutionTime = block.timestamp; // Initialize the timestamp
+        rewardPool = 1000000;
+        difficulty = 2;
+        lastSolutionTime = block.timestamp;
+
+        // Initialize tracking
+        trackingStartTime = block.timestamp;
     }
 
-    // Function to submit a solution
+    mapping(address => bool) public hasSubmitted;
+
+    // Submit a solution
     function submitSolution(bytes32 solution) public {
         require(rewardPool > 0, "No rewards left");
+        // require(!hasSubmitted[msg.sender], "You have already submitted a solution");
 
-        // Check if the solution is valid (matches the target hash)
+        // Increment solution count for tracking
+        solutionCount++;
+
+        // Check if the solution is correct
         if (solution == targetHash) {
-            miners.push(Miner(msg.sender, 10)); // Reward the miner
+            Miner memory newMiner = Miner(msg.sender, 10);
+            miners.push(newMiner);
             rewardPool -= 10;
-
-            // Adjust difficulty dynamically
+            // hasSubmitted[msg.sender] = true;
+            
+            // Adjust difficulty
             adjustDifficulty();
 
-            // Generate a new target hash
+            // Generate new target hash
             targetHash = keccak256(abi.encodePacked(block.timestamp, block.difficulty));
+
+            // Update metrics
+            updateMetrics();
+
+            emit SolutionSubmitted(msg.sender, solution, block.timestamp);
+        }else {
+            emit SolutionReverted("Invalid solution", msg.sender);  // Debug message
+            revert("Invalid solution");
         }
     }
 
-    // Function to adjust difficulty dynamically
+    // Adjust difficulty dynamically
     function adjustDifficulty() internal {
         uint timeTaken = block.timestamp - lastSolutionTime;
 
-        if (timeTaken < 100 seconds) {
-            // If solutions are too fast, increase difficulty
+        if (timeTaken < 15 seconds) {
             difficulty += 1;
         } else if (timeTaken > 30 seconds && difficulty > 1) {
-            // If solutions are too slow, decrease difficulty
             difficulty -= 1;
         }
 
-        lastSolutionTime = block.timestamp; // Update the last solution time
+        lastSolutionTime = block.timestamp;
     }
 
-    // Function to retrieve the list of miners
+    // Update real-time metrics
+    function updateMetrics() internal {
+        uint elapsedTime = block.timestamp - trackingStartTime;
+
+        if (elapsedTime > 0) {
+            solutionRate = (solutionCount * 60) / elapsedTime; // Solutions per minute
+        }
+    }
+
+    // Get current metrics
+    function getMetrics() public view returns (uint, uint, uint) {
+        return (solutionCount, solutionRate, difficulty);
+    }
+
+     // Function to retrieve the list of miners
     function getMiners() public view returns (Miner[] memory) {
         return miners;
-    }
-
-    // Function to get the current difficulty
-    function getDifficulty() public view returns (uint) {
-        return difficulty;
     }
 }

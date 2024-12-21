@@ -107,7 +107,7 @@
 								"type": "uint256"
 							}
 						],
-						"internalType": "struct ProofOfWork.Miner[]",
+						"internalType": "struct ProofOfWorkMetrics.Miner[]",
 						"name": "",
 						"type": "tuple[]"
 					}
@@ -263,7 +263,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"ProofOfWork.sol": "ProofOfWork"
+			"ProofOfWork.sol": "ProofOfWorkMetrics"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -278,11 +278,11 @@
 	},
 	"sources": {
 		"ProofOfWork.sol": {
-			"keccak256": "0x99af52a0df283906b0b6919dee86a9864632b1cd90c2343ed9207d9e330db44b",
+			"keccak256": "0x533ad220d1d1e83a8722b785ba34ac8404a3a8cf9ea9abe2df068890573cf331",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4c6dbdab177fda4733c8f7bc2b7eb084fd014886335983ec4ce02314a27c443d",
-				"dweb:/ipfs/QmQJyZY9vz931L76625SYBaAcoQ3G8ZbPAqrqT1DeyENoB"
+				"bzz-raw://fd8363fc9f5e9541b99158bd0764a26d2b651bd1cbcd6adbb51cc9319fbce7fd",
+				"dweb:/ipfs/Qmedtc2vUVYEQTe2c2MGMQiCkSjHSNr9dTczmZHjeKyZBL"
 			]
 		}
 	},

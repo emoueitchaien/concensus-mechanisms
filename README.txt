@@ -1,28 +1,27 @@
-REMIX DEFAULT WORKSPACE
+# Proof of Work (PoW) and Proof of Stake (PoS) Consensus Mechanisms
 
-Remix default workspace is present when:
-i. Remix loads for the very first time 
-ii. A new workspace is created with 'Default' template
-iii. There are no files existing in the File Explorer
+This repository contains Solidity smart contracts implementing and comparing Proof of Work (PoW) and Proof of Stake (PoS) consensus mechanisms. These implementations are designed for testing and educational purposes, showcasing the differences in performance, energy consumption, and scalability between the two mechanisms.
 
-This workspace contains 3 directories:
+---
 
-1. 'contracts': Holds three contracts with increasing levels of complexity.
-2. 'scripts': Contains four typescript files to deploy a contract. It is explained below.
-3. 'tests': Contains one Solidity test file for 'Ballot' contract & one JS test file for 'Storage' contract.
+## Features
 
-SCRIPTS
+### Proof of Work (PoW)
+- **Dynamic Difficulty Adjustment**: Difficulty changes based on the time taken to find valid solutions.
+- **Miner Rewards**: Rewards are distributed to miners who successfully solve the PoW challenge.
+- **Real-Time Metrics**: Tracks metrics such as total solutions, solution rate, and current difficulty.
+- **Fault Tolerance**: Handles invalid submissions and prevents double submissions.
 
-The 'scripts' folder has four typescript files which help to deploy the 'Storage' contract using 'web3.js' and 'ethers.js' libraries.
+### Proof of Stake (PoS)
+- **Staking**: Validators stake tokens to participate in the consensus mechanism.
+- **Validator Selection**: Validators are selected randomly based on their stake proportion.
+- **Rewards**: Rewards are distributed to the selected validator.
+- **Fault Tolerance**: Handles cases with no validators or insufficient stakes.
 
-For the deployment of any other contract, just update the contract's name from 'Storage' to the desired contract and provide constructor arguments accordingly 
-in the file `deploy_with_ethers.ts` or  `deploy_with_web3.ts`
+---
 
-In the 'tests' folder there is a script containing Mocha-Chai unit tests for 'Storage' contract.
+## Project Structure
 
-To run a script, right click on file name in the file explorer and click 'Run'. Remember, Solidity file must already be compiled.
-Output from script will appear in remix terminal.
+- **`ProofOfWorkMetrics.sol`**: Contains the PoW implementation with dynamic difficulty and reward mechanisms.
+- **`ProofOfStake.sol`**: Contains the PoS implementation with staking and validator selection logic.
 
-Please note, require/import is supported in a limited manner for Remix supported modules.
-For now, modules supported by Remix are ethers, web3, swarmgw, chai, multihashes, remix and hardhat only for hardhat.ethers object/plugin.
-For unsupported modules, an error like this will be thrown: '<module_name> module require is not supported by Remix IDE' will be shown.

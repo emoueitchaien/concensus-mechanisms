@@ -12,7 +12,8 @@ contract ProofOfStake {
     uint public totalStaked;
 
     event ValidatorSelected(address indexed validator, uint reward);
-
+    event ValidatorRejected(string message, address indexed validator);
+    
     // Stake tokens to become a validator
     function stakeTokens() public payable {
         require(msg.value > 0, "Must stake a positive amount");
@@ -57,6 +58,14 @@ contract ProofOfStake {
         }
 
         revert("Validator selection failed");
+    }
+
+    // Handle low stakes gracefully
+    function handleLowStakes(uint threshold) public view returns (bool) {
+        if (totalStaked < threshold) {
+            return false;
+        }
+        return true;
     }
 
     // Retrieve all validators
